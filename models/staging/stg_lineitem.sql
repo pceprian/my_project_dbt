@@ -24,12 +24,12 @@ transformed as (
     l_tax as lineitem_tax,
     l_returnflag as lineitem_return_flag,
     l_linestatus as line_status,
-    cast(l_shipdate as date) as lineitem_ship_date, 
-    cast(l_commitdate as date) as lineitem_commit_date,
-    cast(l_receiptdate as date) as lineitem_receipt_date,
+    {{ replace_null('cast(l_shipdate as date)', 'No Date') }} as lineitem_ship_date,
+    {{ replace_null('cast(l_commitdate as date)', 'No Date') }} as lineitem_commit_date,
+    {{ replace_null('cast(l_receiptdate as date)', 'No Date') }} as lineitem_receipt_date,
     l_shipinstruct as lineitem_ship_instruct,
     l_shipmode as lineitem_ship_mode,
-        {{ insert_timestamp() }} AS loaded_at
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

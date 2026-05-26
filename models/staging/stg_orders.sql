@@ -8,7 +8,7 @@ transformed as (
     o_custkey as customer_id,
     o_orderstatus as order_status,
     o_totalprice as order_total_price,
-    cast(o_orderdate as date) as order_date,
+    {{ replace_null('cast(o_orderdate as date)', 'No Date') }} as order_date,
     o_orderpriority as order_priority, 
     o_clerk as order_clerk,
     o_shippriority as order_ship_priority,
