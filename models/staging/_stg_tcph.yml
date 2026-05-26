@@ -1,0 +1,139 @@
+version: 2
+
+
+models:
+  - name: stg_customers
+    description: Staged customer data from our TCHP database.
+    columns:
+      - name: customer_id
+        description: The primary key for customers.
+        tests:
+          - unique
+          - not_null
+      - name: customer_nation
+        description: Foreign key to stg_nation.nation_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_nation')
+                field: nation_id
+
+  - name: stg_lineitem
+    description: Staged incremental table for lines of items.
+    columns:
+      - name: lineitem_id
+        description: The artifitially created compound primary key for lines of items from our TCHP database.
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: Foreign key to stg_orders.order_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: part_id
+        description: Foreign key to stg_parts.part_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_parts')
+                field: part_id
+      - name: supplier_id
+        description: Foreign key to stg_supplier.supplier_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_supplier')
+                field: supplier_id
+
+  - name: stg_nation
+    description: Staged nation data from our TCHP database.
+    columns:
+      - name: nation_id
+        description: The primary key for nations.
+        tests:
+          - unique
+          - not_null
+      - name: region_id
+        description: Foreign key to stg_region.region_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_region')
+                field: region_id
+
+  - name: stg_orders
+    description: Staged order data from our from our TCHP database.
+    columns:
+      - name: order_id
+        description: Primary key for orders.
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Foreign key to stg_customers.customer_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+
+
+  - name: stg_parts
+    description: Staged parts data from our TCHP database.
+    columns:
+      - name: part_id
+        description: The primary key for parts.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_partsupp
+    description: Staged parts and suppliers data from our TCHP database.
+    columns:
+      - name: part_supplier_id
+        description: The primary key for part-suppplier relationship.
+        tests:
+          - unique
+          - not_null
+      - name: part_id
+        description: Foreign key to stg_parts.part_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_parts')
+                field: part_id
+      - name: supplier_id
+        description: Foreign key to stg_supplier.supplier_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_supplier')
+                field: supplier_id
+
+  - name: stg_region
+    description: Staged region data from our TCHP database.
+    columns:
+      - name: region_id
+        description: The primary key for regions.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_supplier
+    description: Staged suppliers data from our TCHP database.
+    columns:
+      - name: supplier_id
+        description: The primary key for suppliers.
+        tests:
+          - unique
+          - not_null
+      - name: nation_id
+        description: Foreign key to stg_nation.nation_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_nation')
+                field: nation_id
