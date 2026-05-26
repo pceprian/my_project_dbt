@@ -12,8 +12,8 @@ select
     C.customer_name,
     C.customer_address,
     C.customer_phone,
-    C.nation_name as customer_nation_name,
+    N.nation_name as customer_nation_name,
     R.region_name as customer_region_name
-from customer C
+from customers C
 left join nation N on C.customer_nation_id = N.nation_id
 left join region R on N.region_id = R.region_id

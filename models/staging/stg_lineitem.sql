@@ -20,7 +20,7 @@ transformed as (
     l_discount as lineitem_discount,
     l_tax as lineitem_tax,
     l_returnflag as line_item_return_flag,
-    l_linestatys as line_status,
+    l_linestatus as line_status,
     cast(l_shipdate as date) as lineitem_ship_date,
     cast(l_commitdate as date) as lineitem_commit_date,
     cast(l_receiptdate as date) as lineitem_receipt_date,

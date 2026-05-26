@@ -31,7 +31,7 @@ select
 
 from lines L
 left join orders O 
-    on L.id_pedido = O.id_pedido
+    on L.order_id = O.order_id
 left join parts_supplier P 
-    on L.id_producto = P.id_producto 
-    and L.id_proveedor = P.id_proveedor
+    on L.part_id = P.part_id 
+    and L.supplier_id = P.supplier_id

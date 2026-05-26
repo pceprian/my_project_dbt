@@ -13,8 +13,10 @@ select
     S.supplier_address,
     S.supplier_phone,
     S.supplier_account_balance,
-    S.nation_name as supplier_nation_name,
+    N.nation_name as supplier_nation_name,
     R.region_name as supplier_region_name
 from suppliers S
-left join nation N on S.supplier_nation_id = N.nation_id
-left join region R on N.region_id = R.region_id
+left join nation N 
+  on S.supplier_nation_id = N.nation_id
+left join region R 
+  on N.region_id = R.region_id
