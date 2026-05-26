@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: snowflake_sample 
+    database: SNOWFLAKE_SAMPLE_DATA 
+    schema: TPCH_SF1 
+    tables:
+      - name: part  
+      - name: supplier 
+      - name: partsupp   
+      - name: customer
+      - name: nation
+      - name: lineitem
+      - name: region
+      - name: orders 
