@@ -49,3 +49,12 @@ models:
    
     marts:
       +materialized: table
+
+      intermediate:
+        +materialized: view
+
+      business:
+        +materialized: table
+
+    legacy:
+      +materialized: table

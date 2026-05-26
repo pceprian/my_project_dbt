@@ -10,7 +10,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: customer_nation
+      - name: customer_nation_id
         description: Foreign key to stg_nation.nation_id
         tests:
           - relationships:
@@ -130,7 +130,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: nation_id
+      - name: supplier_nation_id
         description: Foreign key to stg_nation.nation_id
         tests:
           - relationships:
