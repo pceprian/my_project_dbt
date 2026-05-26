@@ -6,7 +6,8 @@ transformed as (
   select
     n_nationkey as nation_id,
     n_name as nation_name,
-    n_regionkey as region_id
+    n_regionkey as region_id,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

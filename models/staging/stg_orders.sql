@@ -11,7 +11,8 @@ transformed as (
     cast(o_orderdate as date) as order_date,
     o_orderpriority as order_priority, 
     o_clerk as order_clerk,
-    o_shippriority as order_ship_priority
+    o_shippriority as order_ship_priority,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

@@ -8,7 +8,8 @@ transformed as (
     ps_partkey as part_id,
     ps_suppkey as supplier_id,
     ps_availqty as part_supplier_available_quantity,
-    ps_supplycost as supplier_cost
+    ps_supplycost as supplier_cost,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

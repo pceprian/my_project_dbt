@@ -10,7 +10,8 @@ transformed as (
     c_nationkey as customer_nation_id,
     c_phone as customer_phone,
     c_acctbal as customer_account_balance,
-    c_mktsegment as marketing_segment
+    c_mktsegment as marketing_segment,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

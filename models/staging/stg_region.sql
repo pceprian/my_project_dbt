@@ -5,7 +5,8 @@ source as (
 transformed as (
   select
     r_regionkey as region_id,
-    r_name as region_name
+    r_name as region_name,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed

@@ -1,0 +1,14 @@
+version: 2
+
+macros:
+  - name: safe_divide_zero
+    description: "Safely divide a numerator by a denominator where the denominator value might be zero."
+    arguments:
+      - name: numerator
+        type: number
+        description: "The field or value to be divided."
+      - name: denominator
+        type: number
+        description: "The field or value to divide by. If zero, the result will be null."
+  - name: insert_timestamp
+    description: "Inserts the time when data was inserted into the data warehouse."

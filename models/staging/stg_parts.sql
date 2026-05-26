@@ -11,7 +11,8 @@ transformed as (
     p_type as part_type,
     p_size as part_size,
     p_container as part_container,
-    p_retailprice as part_retail_price
+    p_retailprice as part_retail_price,
+    {{ insert_timestamp() }} AS loaded_at
   from source
 )
 select * from transformed
