@@ -12,6 +12,7 @@ select
     C.customer_name,
     C.customer_address,
     C.customer_phone,
+    C.marketing_segment,
     N.nation_name as customer_nation_name,
     R.region_name as customer_region_name
 from customers C

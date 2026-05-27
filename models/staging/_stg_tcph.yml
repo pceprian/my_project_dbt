@@ -46,6 +46,18 @@ models:
               arguments:
                 to: ref('stg_supplier')
                 field: supplier_id
+      - name: line_status
+        description: Status of the line of items.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['O', 'F']
+      - name: lineitem_return_flag
+        description: If an item is returned or not.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['N', 'A', 'R']
 
   - name: stg_nation
     description: Staged nation data from our TCHP database.
@@ -78,6 +90,12 @@ models:
               arguments:
                 to: ref('stg_customers')
                 field: customer_id
+      - name: order_status
+        description: Status of the orders.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['O', 'F', 'P']
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
@@ -110,6 +128,7 @@ models:
               arguments:
                 to: ref('stg_supplier')
                 field: supplier_id
+      
 
   - name: stg_region
     description: Staged region data from our TCHP database.
