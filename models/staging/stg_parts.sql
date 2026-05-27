@@ -10,9 +10,10 @@ transformed as (
     p_brand as part_brand,
     p_type as part_type,
     p_size as part_size,
+    {{ size_parts(p_size) }} as part_size_group,
     p_container as part_container,
     p_retailprice as part_retail_price,
-    {{ insert_timestamp() }} AS loaded_at
+    {{ insert_timestamp() }} as loaded_at
   from source
 )
 select * from transformed

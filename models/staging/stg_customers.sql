@@ -11,7 +11,7 @@ transformed as (
     c_phone as customer_phone,
     c_acctbal as customer_account_balance,
     c_mktsegment as marketing_segment,
-    {{ insert_timestamp() }} AS loaded_at
+    {{ insert_timestamp() }} as loaded_at
   from source
 )
 select * from transformed
