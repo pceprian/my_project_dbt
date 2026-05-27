@@ -1,6 +1,5 @@
 version: 2
 
-
 models:
   - name: stg_customers
     description: Staged customer data from our TCHP database.
@@ -11,9 +10,10 @@ models:
           - unique
           - not_null
       - name: customer_nation_id
-        description: Foreign key to stg_nation.nation_id
+        description: Foreign key to stg_nation.nation_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_nation')
                 field: nation_id
 
@@ -26,21 +26,24 @@ models:
           - unique
           - not_null
       - name: order_id
-        description: Foreign key to stg_orders.order_id
+        description: Foreign key to stg_orders.order_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_orders')
                 field: order_id
       - name: part_id
-        description: Foreign key to stg_parts.part_id
+        description: Foreign key to stg_parts.part_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_parts')
                 field: part_id
       - name: supplier_id
-        description: Foreign key to stg_supplier.supplier_id
+        description: Foreign key to stg_supplier.supplier_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_supplier')
                 field: supplier_id
 
@@ -53,14 +56,15 @@ models:
           - unique
           - not_null
       - name: region_id
-        description: Foreign key to stg_region.region_id
+        description: Foreign key to stg_region.region_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_region')
                 field: region_id
 
   - name: stg_orders
-    description: Staged order data our TCHP database.
+    description: Staged order data from our TCHP database.
     columns:
       - name: order_id
         description: Primary key for orders.
@@ -68,12 +72,12 @@ models:
           - unique
           - not_null
       - name: customer_id
-        description: Foreign key to stg_customers.customer_id
+        description: Foreign key to stg_customers.customer_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_customers')
                 field: customer_id
-
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
@@ -93,15 +97,17 @@ models:
           - unique
           - not_null
       - name: part_id
-        description: Foreign key to stg_parts.part_id
+        description: Foreign key to stg_parts.part_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_parts')
                 field: part_id
       - name: supplier_id
-        description: Foreign key to stg_supplier.supplier_id
+        description: Foreign key to stg_supplier.supplier_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_supplier')
                 field: supplier_id
 
@@ -123,8 +129,9 @@ models:
           - unique
           - not_null
       - name: supplier_nation_id
-        description: Foreign key to stg_nation.nation_id
+        description: Foreign key to stg_nation.nation_id.
         tests:
           - relationships:
+              arguments:
                 to: ref('stg_nation')
                 field: nation_id
