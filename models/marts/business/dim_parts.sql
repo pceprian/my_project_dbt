@@ -1,2 +1,2 @@
 select *
-from {{ ref('stg_parts') }};
+from {{ ref('stg_parts') }}
