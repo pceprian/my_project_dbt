@@ -21,7 +21,7 @@ models:
     description: Staged incremental table for lines of items.
     columns:
       - name: lineitem_id
-        description: The artificially created compound primary key for lines of items from our TCHP database.
+        description: The artificially created compound primary key for lines of items from our TCHP database. Created using dbt_utils surrogate key generation.
         tests:
           - unique
           - not_null
@@ -110,7 +110,7 @@ models:
     description: Staged parts and suppliers data from our TCHP database.
     columns:
       - name: part_supplier_id
-        description: The primary key for part-supplier relationship.
+        description: The primary key for part-supplier relationship. Created using dbt_utils surrogate key generation.
         tests:
           - unique
           - not_null

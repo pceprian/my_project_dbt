@@ -4,7 +4,7 @@ source as (
 ),
 transformed as (
   select
-    concat(ps_partkey, '-', ps_suppkey) as part_supplier_id,
+    {{ dbt_utils.generate_surrogate_key(['ps_partkey', 'ps_suppkey']) }} as part_supplier_id,
     ps_partkey as part_id,
     ps_suppkey as supplier_id,
     ps_availqty as part_supplier_available_quantity,

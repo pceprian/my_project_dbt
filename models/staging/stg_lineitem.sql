@@ -14,7 +14,7 @@ source as (
 ),
 transformed as (
   select
-    concat(l_orderkey, '-', l_partkey, '-', l_suppkey,'-', l_linenumber) as lineitem_id,
+    {{ dbt_utils.generate_surrogate_key(['l_orderkey', 'l_partkey', 'l_suppkey', 'l_linenumber']) }} as lineitem_id,
     l_orderkey as order_id,
     l_partkey as part_id,
     l_suppkey as supplier_id,
