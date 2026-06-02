@@ -63,5 +63,3 @@ models:
         tests:
           - unique
           - not_null
-  - name: dim_orders
-    description: "Master orders table"
