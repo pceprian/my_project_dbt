@@ -53,5 +53,5 @@ models:
       business:
         +materialized: table
 
-    legacy:
-      +materialized: table
+      legacy:
+        +materialized: table
