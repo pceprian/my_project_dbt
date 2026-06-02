@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Master customer dimension. It flattens the geographic hierarchy by denormalizing customers, nations, and regions into a single table"
+    columns:
+      - name: customer_id
+        description: "Primary key. Unique identifier for each customer mapped directly from the source system."
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Name of the customer"
+      - name: marketing_segment
+        description: "The industry sector or business segment the customer belongs to"
+      - name: customer_nation_name
+        description: "The country of the customer"
+      - name: customer_region_name
+        description: "The global economic region of the customer"
+  - name: dim_suppliers
+    description: "Master supplier dimension. It flattens the geographic hierarchy by denormalizing suppliers, nations, and regions into a single table"
+    columns:
+      - name: supplier_id
+        description: "Primary key. Unique identifier for each supplier mapped directly from the source system."
+        tests:
+          - unique
+          - not_null
+      - name: supplier_name
+        description: "Name of the supplier"
+      - name: supplier_address
+        description: "Address of the supplier"
+      - name: supplier_phone
+        description: "Phone number of the supplier"
+      - name: supplier_account_balance
+        description: "Total balance of the account of the supplier"
+      - name: supplier_nation_name
+        description: "The country of the supplier"
+      - name: supplier_region_name
+        description: "The global economic region of the supplier"
+  - name: dim_parts
+    description: "Master parts dimension"
+    columns:
+      - name: part_id
+        description: "Primary key. Unique identifier for each part mapped directly from the source system."
+        tests:
+          - unique
+          - not_null
+      - name: part_name
+        description: "Name of the part or component"
+      - name: part_manufacturer
+        description: "The name of the manufacturer or vendor responsible for producing the part"
+      - name: part_brand
+        description: "The brand name under which the part is sold"
+      - name: part_type
+        description: "The category or material classification defining the part's type"
+      - name: part_container
+        description: "The standardized packaging or container type used to store and ship the part"
+  - name: dim_date
+    description: "Master date dbt table"
+    columns:
+      - name: date_key
+        description: The primary key for date. Created using dbt_utils surrogate key generation.
+        tests:
+          - unique
+          - not_null
