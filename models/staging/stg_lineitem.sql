@@ -25,8 +25,17 @@ transformed as (
     l_extendedprice * (1 - l_discount) as lineitem_price_after_discount,
     l_tax as lineitem_tax,
     (l_extendedprice * (1 - l_discount)) * (1 + l_tax) as lineitem_price_after_discount_and_tax,
-    l_linestatus as line_status,
-    l_returnflag as lineitem_return_flag,
+    case l_linestatus
+      when 'O' then 'Open'
+      when 'F' then 'Finished'
+      else 'Unknown'
+    end as line_status,    
+    case l_returnflag
+      when 'N' then 'Normal' --client did not ask for return
+      when 'A' then 'Accepted' --client asked for return but accepted supplier offer, so client kept the product
+      when 'R' then 'Refunded' --client returned the product and a refund was made
+      else 'Unknown'
+    end as lineitem_return_flag, 
     {{ replace_null_text('cast(l_shipdate as date)', 'No Date') }} as lineitem_ship_date,
     {{ replace_null_text('cast(l_commitdate as date)', 'No Date') }} as lineitem_commit_date,
     {{ replace_null_text('cast(l_receiptdate as date)', 'No Date') }} as lineitem_receipt_date,
