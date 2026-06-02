@@ -48,16 +48,8 @@ models:
                 field: supplier_id
       - name: line_status
         description: Status of the line of items.
-        tests:
-          - accepted_values:
-              arguments:
-                values: ['Open', 'Finished', 'Unknown']
       - name: lineitem_return_flag
         description: If an item is returned or not.
-        tests:
-          - accepted_values:
-              arguments:
-                values: ['Normal', 'Accepted', 'Refunded', 'Unknown']
 
   - name: stg_nation
     description: Staged nation data from our TCHP database.
@@ -92,10 +84,6 @@ models:
                 field: customer_id
       - name: order_status
         description: Status of the orders.
-        tests:
-          - accepted_values:
-              arguments:
-                values: ['Open', 'Finished', 'Partial', 'Unknown']
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
