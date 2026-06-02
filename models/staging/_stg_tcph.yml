@@ -154,3 +154,5 @@ models:
               arguments:
                 to: ref('stg_nation')
                 field: nation_id
+  - name: stg_date
+    description: Staged date dbt table.

@@ -55,3 +55,11 @@ models:
         description: "The category or material classification defining the part's type"
       - name: part_container
         description: "The standardized packaging or container type used to store and ship the part"
+  - name: dim_date
+    description: "Master date dbt table"
+    columns:
+      - name: date_key
+        description: The primary key for date. Created using dbt_utils surrogate key generation.
+        tests:
+          - unique
+          - not_null
