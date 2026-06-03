@@ -40,6 +40,7 @@ select
     F.lineitem_extended_price as gross_price,
     F.lineitem_discount as discount,
     F.lineitem_tax as tax,
+    --adjusting fct_sales
     F.lineitem_price_after_discount as price_after_discount,
     F.lineitem_net_sales as net_sales
 
