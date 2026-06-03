@@ -18,3 +18,5 @@ macros:
       - name: part_size
         type: float
         description: "The field or value used to classify the parts size."
+  - name: generate_schema_name
+    description: "Customizes the way the schema and the table show depending on the environment we are, using environment variable DBT_MY_ENV"
