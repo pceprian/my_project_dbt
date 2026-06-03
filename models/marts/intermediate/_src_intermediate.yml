@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: int_lines_items_detailed
+    description: "Intermediate layer that joins raw lineitems with their orders. It connects transaction-level granularity and pre-calculates quantitative metrics before loading into the fact."

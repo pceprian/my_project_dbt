@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "Core fact table built from the intermediate line items layer. It uses customer transactions at the line-item level and contains key financial metrics like gross price, discounts, and net sales fields"
+  - name: fct_inventory
+    description: "Supply chain fact table that maps the relationships between parts and suppliers. It calculates real-time inventory valuation and monitors supplier unit costs to optimize stock management operations"
