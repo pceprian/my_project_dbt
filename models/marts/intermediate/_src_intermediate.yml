@@ -3,3 +3,54 @@ version: 2
 models:
   - name: int_lines_items_detailed
     description: "Intermediate layer that joins raw lineitems with their orders. It connects transaction-level granularity and pre-calculates quantitative metrics before loading into the fact."
+    columns:
+      - name: lineitem_id
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+
+      - name: customer_id
+
+      - name: part_id
+        tests:
+          - not_null
+
+      - name: supplier_id
+        tests:
+          - not_null
+
+      - name: lineitem_quantity
+        tests:
+          - not_null
+
+      - name: lineitem_extended_price
+        tests:
+          - not_null
+
+      - name: lineitem_discount
+        tests:
+          - not_null
+
+      - name: lineitem_tax
+        tests:
+          - not_null
+
+      - name: lineitem_price_after_discount
+        tests:
+          - not_null
+
+      - name: lineitem_net_sales
+        tests:
+          - not_null
+
+      - name: order_date
+
+      - name: order_status
