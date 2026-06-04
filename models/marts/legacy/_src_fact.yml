@@ -60,6 +60,7 @@ models:
       - name: quantity
         tests:
           - not_null
+          - greater_than_zero
 
       - name: gross_price
         tests:
@@ -76,6 +77,9 @@ models:
       - name: price_after_discount
         tests:
           - not_null
+          - average_dollars_greater_than_one:
+              arguments:
+                group_by_column: customer_id
 
       - name: net_sales
         tests:
