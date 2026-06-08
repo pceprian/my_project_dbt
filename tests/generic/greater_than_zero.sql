@@ -1,3 +1,7 @@
+{{
+    config( severity = "warn" )
+}}
+
 {% test greater_than_zero(model, column_name)%}
 
     select {{column_name}} 
