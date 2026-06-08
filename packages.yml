@@ -10,3 +10,6 @@ packages:
 
   - package: tnightengale/dbt_meta_testing
     version: 0.4.0
+  
+  - package: dbt-labs/audit_helper
+    version: 0.14.0
