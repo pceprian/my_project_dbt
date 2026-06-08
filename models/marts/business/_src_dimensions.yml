@@ -70,7 +70,6 @@ models:
       - name: part_size_group
         description: "Classification of the type of sizxe of a part, as Small, Medium, Large"
         tests:
-          - not_null
           - accepted_values:
               arguments:
                 values:

@@ -31,6 +31,8 @@ select
     supp.supplier_nation_name,
     
     F.order_status,
+    F.order_priority_code,
+    F.order_priority_name,
     
     --Dates for using it later on PowerBI tools like PowerBI
     F.order_date as order_date_key,
