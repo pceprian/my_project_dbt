@@ -60,7 +60,6 @@ models:
         +materialized: table
 
 
-
-
-#on-run-end:
- # - "{{ dq_tools.store_test_results(results) }}"
+dispatch:
+  - macro_namespace: dbt
+    search_order: ['dbt_project_evaluator', 'dbt']

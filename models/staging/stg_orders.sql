@@ -13,7 +13,7 @@ transformed as (
       else 'Unknown'
     end as order_status,
     o_totalprice as order_total_price,
-    {{ replace_null_text('cast(o_orderdate as date)', 'No Date') }} as order_date,
+    {{ replace_null_text("to_varchar(o_orderdate)", "No Date") }} as order_date,
     cast(regexp_substr(o_orderpriority, '\\d+') as integer) as order_priority_code,
     trim(regexp_substr(o_orderpriority, '[A-Z ][A-Z ]+')) as order_priority_name,
     o_clerk as order_clerk,

@@ -84,6 +84,13 @@ models:
                 field: customer_id
       - name: order_status
         description: Status of the orders.
+      - name: order_date
+        description: "The date when the order was done"
+        tests:
+          - not_null
+          - is_valid_date_range:
+              arguments:
+                min_allowed_date: '1992-01-01'
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
