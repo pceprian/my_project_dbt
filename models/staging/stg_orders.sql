@@ -18,7 +18,7 @@ transformed as (
     trim(regexp_substr(o_orderpriority, '[A-Z ][A-Z ]+')) as order_priority_name,
     o_clerk as order_clerk,
     o_shippriority as order_ship_priority,
-    {{ insert_timestamp() }} as loaded_at
+    {{ dbt_utils.current_timestamp() }} as loaded_at
   from source
 )
 select * from transformed

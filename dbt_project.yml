@@ -58,11 +58,15 @@ models:
 
       business:
         +materialized: table
+        #+meta:
+         # models_documentation_required: true #el proyecto fallará en CI si no está documentado
 
       legacy:
         +materialized: table
 
 
-dispatch:
-  - macro_namespace: dbt
-    search_order: ['dbt_project_evaluator', 'dbt']
+#dispatch:
+ # - macro_namespace: dbt
+  #  search_order: ['dbt_project_evaluator', 'dbt']
+
+on-run-end: []

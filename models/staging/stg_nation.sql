@@ -7,7 +7,7 @@ transformed as (
     n_nationkey as nation_id,
     n_name as nation_name,
     n_regionkey as region_id,
-    {{ insert_timestamp() }} as loaded_at
+    {{ dbt_utils.current_timestamp() }} as loaded_at
   from source
 )
 select * from transformed

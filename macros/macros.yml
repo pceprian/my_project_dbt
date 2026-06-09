@@ -1,8 +1,7 @@
 version: 2
 
 macros:
-  - name: insert_timestamp
-    description: "Inserts the time when data was inserted into the data warehouse."
+
   - name: replace_null_text
     description: "Replaces null values or empty text fields by 'No Information' text. The goal is to get better reports."
     arguments:
@@ -12,11 +11,16 @@ macros:
       - name: replace_text
         type: string
         description: "The text to insert when a NULL is found. Default text is 'No Information'."
+
   - name: size_parts
     description: "Classifies the parts according to their size in Small, Medium or Large."
     arguments:
       - name: part_size
         type: float
         description: "The field or value used to classify the parts size."
+
   - name: generate_schema_name
     description: "Customizes the way the schema and the table show depending on the environment we are, using environment variable DBT_MY_ENV"
+
+  - name: audit_helper...
+    description: ...

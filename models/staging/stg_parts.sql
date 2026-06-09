@@ -13,7 +13,7 @@ transformed as (
     {{ size_parts('p_size') }} as part_size_group,
     p_container as part_container,
     p_retailprice as part_retail_price,
-    {{ insert_timestamp() }} as loaded_at
+    {{ dbt_utils.current_timestamp() }} as loaded_at
   from source
 )
 select * from transformed

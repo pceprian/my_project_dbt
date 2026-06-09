@@ -41,7 +41,7 @@ transformed as (
     {{ replace_null_text('cast(l_receiptdate as date)', 'No Date') }} as lineitem_receipt_date,
     l_shipinstruct as lineitem_ship_instruct,
     l_shipmode as lineitem_ship_mode,
-    {{ insert_timestamp() }} as loaded_at
+    {{ dbt_utils.current_timestamp() }} as loaded_at
   from source
 )
 select * from transformed
