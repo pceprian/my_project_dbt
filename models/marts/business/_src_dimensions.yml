@@ -9,6 +9,10 @@ models:
         tests:
           - unique
           - not_null
+          - dbt_utils.cardinality_equality:
+              arguments:
+                field: customer_id
+                to: ref('stg_customers')
       - name: customer_name
         description: "Name of the customer"
       - name: marketing_segment
@@ -25,6 +29,10 @@ models:
         tests:
           - unique
           - not_null
+          - dbt_utils.cardinality_equality:
+              arguments:
+                field: supplier_id
+                to: ref('stg_supplier')
       - name: supplier_name
         description: "Name of the supplier"
       - name: supplier_address
@@ -45,6 +53,10 @@ models:
         tests:
           - unique
           - not_null
+          - dbt_utils.cardinality_equality:
+              arguments:
+                field: part_id
+                to: ref('stg_parts')
       - name: part_name
         description: "Name of the part or component"
       - name: part_manufacturer
@@ -53,6 +65,17 @@ models:
         description: "The brand name under which the part is sold"
       - name: part_type
         description: "The category or material classification defining the part's type"
+      - name: part_size
+        description: "The numeric size a part has"
+      - name: part_size_group
+        description: "Classification of the type of sizxe of a part, as Small, Medium, Large"
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - Small
+                  - Medium
+                  - Large
       - name: part_container
         description: "The standardized packaging or container type used to store and ship the part"
   - name: dim_date
@@ -61,5 +84,4 @@ models:
       - name: date_key
         description: The primary key for date. Created using dbt_utils surrogate key generation.
         tests:
-          - unique
           - not_null

@@ -10,7 +10,7 @@ transformed as (
     s_nationkey as supplier_nation_id,
     s_phone as supplier_phone,
     s_acctbal as supplier_account_balance,
-    {{ insert_timestamp() }} as loaded_at
+    cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }}) as loaded_at
   from source
 )
 select * from transformed

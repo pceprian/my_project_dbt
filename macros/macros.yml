@@ -1,20 +1,25 @@
 version: 2
 
 macros:
-  - name: insert_timestamp
-    description: "Inserts the time when data was inserted into the data warehouse."
+  - name: compare_sales_relations
+    description: "Compares the old fct_sales_deprecated table with the new one fct_sales, to check if the data matches or has differences. This is a 'dummy' test, as they are duplicated tables, but I wanted to try if it worked"
+
+  - name: generate_schema_name
+    description: "Decides where to save tables in Snowflake so production data and development data don't mix"
+    arguments:
+      - name: custom_schema_name
+        type: string
+        description: "The folder name for the model (staging, business...)"
+      - name: node
+        type: any
+        description: "Internal dbt information about the current model"
+
   - name: replace_null_text
-    description: "Replaces null values or empty text fields by 'No Information' text. The goal is to get better reports."
+    description: "Fixes empty fields: if a value is missing or blank, it fills it with replace_text so reports don't have NULL or empty categories for classification or filters"
     arguments:
       - name: column
         type: string
-        description: "The text column or field to check for NULL or empty values."
+        description: "The column to check"
       - name: replace_text
         type: string
-        description: "The text to insert when a NULL is found. Default text is 'No Information'."
-  - name: size_parts
-    description: "Classifies the parts according to their size in Small, Medium or Large."
-    arguments:
-      - name: part_size
-        type: float
-        description: "The field or value used to classify the parts size."
+        description: "The text to use if data is missing in column. The default value is 'No Information'"
