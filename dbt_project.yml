@@ -43,11 +43,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   my_project_dbt:
-    +post-hook:
-      - "grant select on {{ this }} to role bi_reading_role;"
 
     staging:
       +materialized: table
+      +tags: ["staging_layer"]
    
     marts:
       +meta:

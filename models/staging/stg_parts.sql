@@ -18,7 +18,7 @@ transformed as (
     end as part_size_group,
     p_container as part_container,
     p_retailprice as part_retail_price,
-    {{ dbt_utils.current_timestamp() }} as loaded_at
+    cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }}) as loaded_at
   from source
 )
 select * from transformed

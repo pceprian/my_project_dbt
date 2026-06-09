@@ -11,7 +11,7 @@ macros:
         type: string
         description: "The folder name for the model (staging, business...)"
       - name: node
-        type: object
+        type: any
         description: "Internal dbt information about the current model"
 
   - name: replace_null_text
