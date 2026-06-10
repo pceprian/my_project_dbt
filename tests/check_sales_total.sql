@@ -1,5 +1,5 @@
 {{ config(
-    tags = ["quality_check"],
+    tags = ["check_business"],
     severity = "warn"
 ) }}
 

@@ -54,3 +54,9 @@ models:
       - name: order_date
 
       - name: order_status
+
+      - name: order_priority_code
+
+      - name: order_priority_name
+        tests:
+          - no_spaces
