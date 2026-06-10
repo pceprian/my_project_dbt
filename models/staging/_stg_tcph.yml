@@ -9,6 +9,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: customer_name
       - name: customer_nation_id
         description: Foreign key to stg_nation.nation_id.
         tests:
@@ -16,6 +17,8 @@ models:
               arguments:
                 to: ref('stg_nation')
                 field: nation_id
+      - name: customer_phone
+      - name: marketing_segment
 
   - name: stg_lineitem
     description: Staged incremental table for lines of items.
@@ -59,6 +62,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: nation_name
       - name: region_id
         description: Foreign key to stg_region.region_id.
         tests:
@@ -142,6 +146,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: supplier_name
       - name: supplier_nation_id
         description: Foreign key to stg_nation.nation_id.
         tests:

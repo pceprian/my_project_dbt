@@ -21,6 +21,8 @@ models:
         description: "The country of the customer"
       - name: customer_region_name
         description: "The global economic region of the customer"
+
+
   - name: dim_suppliers
     description: "Master supplier dimension. It flattens the geographic hierarchy by denormalizing suppliers, nations, and regions into a single table"
     columns:
@@ -45,6 +47,9 @@ models:
         description: "The country of the supplier"
       - name: supplier_region_name
         description: "The global economic region of the supplier"
+  
+
+
   - name: dim_parts
     description: "Master parts dimension"
     columns:
@@ -78,6 +83,8 @@ models:
                   - Large
       - name: part_container
         description: "The standardized packaging or container type used to store and ship the part"
+
+
   - name: dim_date
     description: "Master date dbt table"
     columns:
