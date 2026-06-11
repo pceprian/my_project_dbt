@@ -95,6 +95,10 @@ models:
           - is_valid_date_range:
               arguments:
                 min_allowed_date: '1992-01-01'
+      - name: order_priority_code
+        description: "The parsed numeric code for order priority"
+      - name: order_priority_name
+        description: "The trimmed text name for order priority"
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
