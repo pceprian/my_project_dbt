@@ -18,7 +18,6 @@ select
     L.lineitem_price_after_discount_and_tax as lineitem_net_sales,
     O.order_date,
     O.order_status,
-    O.order_priority_code,
     O.order_priority_name
 from lines L
 left join orders O on L.order_id = O.order_id
