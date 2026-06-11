@@ -8,7 +8,6 @@ transformed as (
     ps_partkey as part_id,
     ps_suppkey as supplier_id,
     ps_availqty as part_supplier_available_quantity,
-    ps_supplycost as part_supply_cost,
     cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }}) as loaded_at
   from source
 )
