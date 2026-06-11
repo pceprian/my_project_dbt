@@ -15,6 +15,7 @@ inventory_calculations as (
         part_id,
         supplier_id,
         part_supplier_available_quantity,
+        part_supply_cost,
         (coalesce(part_supplier_available_quantity, 0) * coalesce(part_supply_cost, 0)) as total_inventory_valuation
     from partsupp
 )
