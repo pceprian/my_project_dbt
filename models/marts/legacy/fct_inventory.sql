@@ -1,6 +1,11 @@
 with
 partsupp as (
-    select * from {{ ref('stg_partsupp') }}
+    select 
+        part_id,
+        supplier_id,
+        part_supplier_available_quantity,
+        part_supply_cost
+    from {{ ref('stg_partsupp') }}
 ),
 dim_parts as (
     select * from {{ ref('dim_parts') }}
@@ -16,7 +21,7 @@ inventory_calculations as (
         supplier_id,
         part_supplier_available_quantity,
         part_supply_cost,
-        (part_supplier_available_quantity * part_supply_cost) as total_inventory_valuation
+        (coalesce(part_supplier_available_quantity, 0) * coalesce(part_supply_cost, 0)) as total_inventory_valuation
     from partsupp
 )
 
