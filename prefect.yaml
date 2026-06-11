@@ -1,4 +1,3 @@
----
 # Welcome to your prefect.yaml file! You can use this file for
 # storing and managing configuration for deploying your flows.
 # We recommend committing this file to source control along
@@ -9,11 +8,11 @@ name: PREFECT
 prefect-version: 3.7.3
 
 # build section allows you to manage and build docker images
-build: null
+build:
 
 # push section allows you to manage if and how this project
 # is uploaded to remote locations
-push: null
+push:
 
 # pull section allows you to provide instructions for cloning
 # this project in remote locations
@@ -27,7 +26,7 @@ pull:
     # Si tu repositorio es privado, descomenta la línea de abajo apuntando al bloque que creamos:
     # credentials: "{{ prefect.blocks.github.mi-repositorio-github }}"
 - prefect.deployments.steps.set_working_directory:
-    directory: "{{ clone_step.directory }}"
+    directory: '{{ clone_step.directory }}'
 - prefect.deployments.steps.pip_install_requirements:
     requirements_file: requirements.txt
 
@@ -35,10 +34,10 @@ pull:
 # for deploying flows
 deployments:
 - name: demo-deplopyment
-  version: null
+  version:
   tags: []
-  concurrency_limit: null
-  description: null
+  concurrency_limit:
+  description:
   entrypoint: hello.py:hello_world
   parameters: {}
   work_pool:
@@ -46,3 +45,51 @@ deployments:
     work_queue_name: default
     job_variables: {}
   schedules: []
+- name: deploy-job-1
+  version:
+  tags: []
+  concurrency_limit:
+  description:
+  entrypoint: ejecutar_dbt.py:lanzar_primer_job
+  parameters: {}
+  work_pool:
+    name: process1
+    work_queue_name:
+    job_variables: {}
+  schedules:
+  - cron: 10 10,22 * * 1-5
+    timezone: UTC
+    day_or: true
+    active: true
+- name: deploy-job-2
+  version:
+  tags: []
+  concurrency_limit:
+  description:
+  entrypoint: ejecutar_dbt.py:lanzar_segundo_job
+  parameters: {}
+  work_pool:
+    name: process1
+    work_queue_name:
+    job_variables: {}
+  schedules:
+  - cron: 10 12 * * 1-5
+    timezone: UTC
+    day_or: true
+    active: true
+- name: deploy-job-3
+  version:
+  tags: []
+  concurrency_limit:
+  description:
+  entrypoint: ejecutar_dbt.py:lanzar_tercer_job
+  parameters: {}
+  work_pool:
+    name: process1
+    work_queue_name:
+    job_variables: {}
+  schedules:
+  - cron: 10 14 * * 1-5
+    timezone: UTC
+    day_or: true
+    active: true
