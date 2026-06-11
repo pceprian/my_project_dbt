@@ -1,11 +1,20 @@
 packages:
-- package: calogica/dbt_date
+- package: dbt-labs/audit_helper
+  name: audit_helper
+  version: 0.14.0
+- package: godatadriven/dbt_date
   name: dbt_date
-  version: 0.9.1
-- package: calogica/dbt_expectations
+  version: 0.18.0
+- package: metaplane/dbt_expectations
   name: dbt_expectations
-  version: 0.10.1
+  version: 0.10.10
+- package: tnightengale/dbt_meta_testing
+  name: dbt_meta_testing
+  version: 0.4.0
+- package: dbt-labs/dbt_project_evaluator
+  name: dbt_project_evaluator
+  version: 1.3.0
 - package: dbt-labs/dbt_utils
   name: dbt_utils
   version: 1.3.3
-sha1_hash: feeb15a88b8cbc9fb0bd11e508869e116e421fb9
+sha1_hash: 8f7a73c5513fba3c6656e67712fca760c5d9841f

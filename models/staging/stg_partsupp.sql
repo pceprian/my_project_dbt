@@ -9,7 +9,8 @@ transformed as (
     ps_suppkey as supplier_id,
     ps_availqty as part_supplier_available_quantity,
     ps_supplycost as supplier_cost,
-    {{ insert_timestamp() }} as loaded_at
+    (coalesce(part_supplier_available_quantity, 0) * coalesce(supplier_cost, 0)) as total_inventory_valuation,
+    cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }}) as loaded_at
   from source
 )
 select * from transformed

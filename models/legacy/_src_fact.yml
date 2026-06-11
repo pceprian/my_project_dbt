@@ -1,6 +1,0 @@
-version: 2
-
-models:
-  - name: fct_sales
-    description: "Central fact table containing sales and transactional metrics. Each row represents a single line item within a customer order. It connects directly to dimensions like customers, parts, suppliers, and dates to analyze revenue, discounts, taxes, and shipping logistics"
-     

@@ -1,0 +1,147 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "Core fact table built from the intermediate line items layer. It uses customer transactions at the line-item level and contains key financial metrics like gross price, discounts, and net sales fields"
+    columns:
+      - name: lineitem_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+      - name: customer_name
+      - name: marketing_segment
+      - name: part_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_parts')
+                field: part_id
+      - name: part_name
+      - name: part_brand
+      - name: supplier_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_suppliers')
+                field: supplier_id
+      - name: supplier_name
+      - name: supplier_nation_name
+      - name: order_status
+        tests:
+          - not_null
+      - name: order_priority_code
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['1', '2', '3', '4', '5']
+      - name: order_priority_name
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['URGENT', 'HIGH', 'MEDIUM', 'NOT SPECIFIED', 'LOW']
+      - name: order_date_key
+        tests:
+          - not_null
+          - is_valid_date_range:
+              arguments:
+                min_allowed_date: '1992-01-01'
+      - name: quantity
+        tests:
+          - not_null
+          - greater_than_zero
+      - name: gross_price
+        tests:
+          - not_null
+          - greater_than_zero
+      - name: discount
+      - name: tax
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0 
+                max_value: 1 
+                strictly: false # (Optional. Default is 'false'. Adds an 'or equal to' to the comparison operator for min/max)
+              config:
+                severity: warn
+                error_if: ">=100"
+      - name: price_after_discount
+        tests:
+          - not_null
+          - average_dollars_greater_than_one:
+              arguments:
+                group_by_column: customer_id
+      - name: net_sales
+        tests:
+          - not_null
+
+  - name: fct_inventory
+    description: "Supply chain fact table that maps the relationships between parts and suppliers. It calculates real-time inventory valuation and monitors supplier unit costs to optimize stock management operations"
+    columns:
+      - name: inventory_id
+        tests:
+          - unique
+          - not_null
+      - name: part_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_parts')
+                field: part_id
+      - name: part_name
+      - name: part_brand
+      - name: part_type
+      - name: supplier_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_suppliers')
+                field: supplier_id
+      - name: supplier_name
+      - name: supplier_nation_name
+      - name: part_supplier_available_quantity
+        tests:
+          - not_null
+      - name: part_supply_cost
+        tests:
+          - not_null
+      - name: total_inventory_valuation
+        tests:
+          - not_null
+
+  - name: fct_sales_deprecated
+    description: "Duplicated core fact sales table built for checking some tests: compare_sales_relations. It is exactly the same as fct_sales."
+    columns:
+      - name: lineitem_id
+      - name: order_id
+      - name: customer_id
+      - name: customer_name
+      - name: marketing_segment
+      - name: part_id
+      - name: part_name
+      - name: part_brand
+      - name: supplier_id
+      - name: supplier_name
+      - name: supplier_nation_name
+      - name: order_status
+      - name: order_date_key
+      - name: quantity
+      - name: gross_price
+      - name: discount
+      - name: tax
+      - name: price_after_discount
+      - name: net_sales

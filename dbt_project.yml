@@ -43,15 +43,32 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   my_project_dbt:
+
     staging:
       +materialized: table
+      +tags: ["staging_layer"]
    
     marts:
+      +meta:
+        required_tests: {"unique.*|not_null": 2}
+
       intermediate:
         +materialized: view
+        +tags: ["intermediate_layer"]
 
       business:
         +materialized: table
+        +tags: ["business_layer"]
+        #+meta:
+         # models_documentation_required: true #el proyecto fallará en CI si no está documentado
 
-    legacy:
-      +materialized: table
+      legacy:
+        +materialized: table
+        +tags: ["legacy_layer"]
+
+
+#dispatch:
+ # - macro_namespace: dbt
+  #  search_order: ['dbt_project_evaluator', 'dbt']
+
+on-run-end: []

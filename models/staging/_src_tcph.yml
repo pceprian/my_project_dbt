@@ -13,3 +13,4 @@ sources:
       - name: lineitem
       - name: region
       - name: orders 
+      - name: date

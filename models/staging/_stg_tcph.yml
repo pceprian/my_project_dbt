@@ -9,6 +9,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: customer_name
       - name: customer_nation_id
         description: Foreign key to stg_nation.nation_id.
         tests:
@@ -16,6 +17,8 @@ models:
               arguments:
                 to: ref('stg_nation')
                 field: nation_id
+      - name: customer_phone
+      - name: marketing_segment
 
   - name: stg_lineitem
     description: Staged incremental table for lines of items.
@@ -59,6 +62,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: nation_name
       - name: region_id
         description: Foreign key to stg_region.region_id.
         tests:
@@ -84,6 +88,17 @@ models:
                 field: customer_id
       - name: order_status
         description: Status of the orders.
+      - name: order_date
+        description: "The date when the order was done"
+        tests:
+          - not_null
+          - is_valid_date_range:
+              arguments:
+                min_allowed_date: '1992-01-01'
+      - name: order_priority_code
+        description: "The parsed numeric code for order priority"
+      - name: order_priority_name
+        description: "The trimmed text name for order priority"
 
   - name: stg_parts
     description: Staged parts data from our TCHP database.
@@ -116,7 +131,8 @@ models:
               arguments:
                 to: ref('stg_supplier')
                 field: supplier_id
-      
+      - name: part_supplier_available_quantity
+      - name: supplier_cost
 
   - name: stg_region
     description: Staged region data from our TCHP database.
@@ -135,6 +151,7 @@ models:
         tests:
           - unique
           - not_null
+      - name: supplier_name
       - name: supplier_nation_id
         description: Foreign key to stg_nation.nation_id.
         tests:
@@ -142,5 +159,6 @@ models:
               arguments:
                 to: ref('stg_nation')
                 field: nation_id
+
   - name: stg_date
     description: Staged date dbt table.

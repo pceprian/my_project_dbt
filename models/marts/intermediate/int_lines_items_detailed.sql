@@ -9,13 +9,15 @@ select
     L.order_id,
     O.customer_id,
     L.part_id,
+    L.supplier_id,
     L.lineitem_quantity,
     L.lineitem_extended_price,
     L.lineitem_discount,
     L.lineitem_tax,
-    (L.lineitem_extended_price * (1 - L.lineitem_discount) * (1 + L.lineitem_tax)) as line_item_profit,
+    L.lineitem_price_after_discount,
+    L.lineitem_price_after_discount_and_tax as lineitem_net_sales,
     O.order_date,
-    O.order_status
+    O.order_status,
+    O.order_priority_name
 from lines L
-left join orders O 
-ON L.order_id = O.order_id
+left join orders O on L.order_id = O.order_id

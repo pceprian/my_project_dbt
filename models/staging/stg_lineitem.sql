@@ -36,12 +36,12 @@ transformed as (
       when 'R' then 'Refunded' --client returned the product and a refund was made
       else 'Unknown'
     end as lineitem_return_flag, 
-    {{ replace_null_text('cast(l_shipdate as date)', 'No Date') }} as lineitem_ship_date,
-    {{ replace_null_text('cast(l_commitdate as date)', 'No Date') }} as lineitem_commit_date,
-    {{ replace_null_text('cast(l_receiptdate as date)', 'No Date') }} as lineitem_receipt_date,
+    {{ replace_null_text('l_shipdate', 'No Date') }} as lineitem_ship_date,
+    {{ replace_null_text('l_commitdate', 'No Date') }} as lineitem_commit_date,
+    {{ replace_null_text('l_receiptdate', 'No Date') }} as lineitem_receipt_date,
     l_shipinstruct as lineitem_ship_instruct,
     l_shipmode as lineitem_ship_mode,
-    {{ insert_timestamp() }} as loaded_at
+    cast({{ dbt.current_timestamp() }} as {{ dbt.type_timestamp() }}) as loaded_at
   from source
 )
 select * from transformed
