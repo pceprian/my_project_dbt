@@ -35,7 +35,6 @@ select
     
     -- Qauntitave metrics of inventory
     I.part_supplier_available_quantity,
-    I.part_supply_cost,
     I.total_inventory_valuation
 
 from inventory_calculations I
