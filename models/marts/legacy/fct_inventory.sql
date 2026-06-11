@@ -1,11 +1,6 @@
 with
 partsupp as (
-    select 
-        part_id,
-        supplier_id,
-        part_supplier_available_quantity,
-        part_supply_cost
-    from {{ ref('stg_partsupp') }}
+    select  * from {{ ref('stg_partsupp') }}
 ),
 dim_parts as (
     select * from {{ ref('dim_parts') }}
