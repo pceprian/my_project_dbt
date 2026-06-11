@@ -132,7 +132,7 @@ models:
                 to: ref('stg_supplier')
                 field: supplier_id
       - name: part_supplier_available_quantity
-      - name: part_supply_cost
+      - name: ps_supplycost
 
   - name: stg_region
     description: Staged region data from our TCHP database.

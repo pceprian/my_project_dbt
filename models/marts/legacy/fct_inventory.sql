@@ -15,6 +15,7 @@ inventory_calculations as (
         part_id,
         supplier_id,
         part_supplier_available_quantity,
+        ps_supplycost,
         (coalesce(part_supplier_available_quantity, 0)) as total_inventory_valuation
     from partsupp
 )
@@ -35,6 +36,7 @@ select
     
     -- Qauntitave metrics of inventory
     I.part_supplier_available_quantity,
+    I.ps_supplycost,
     I.total_inventory_valuation
 
 from inventory_calculations I
